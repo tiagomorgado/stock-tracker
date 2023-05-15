@@ -5,7 +5,6 @@ export const StockList = () => {
     const [stock, setStock] = useState()
     const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"])
 
-
     useEffect(() => { 
         let isMounted = true
         const fetchData = async () => {
