@@ -25,6 +25,7 @@ export const StockList = () => {
                         }
                     })
                 }))
+                console.log(responses)
 
                 /* Fetch only data and symbol */
                 const data = responses.map((response) => {
@@ -64,7 +65,7 @@ export const StockList = () => {
 
                 </thead>
                 <tbody>
-                    {
+                   {/* {
                         stock.map((stockData) => {
                             return(
                                 <tr key={stockData.symbol} className='table-row'>
@@ -79,7 +80,7 @@ export const StockList = () => {
                                 </tr>
                             )
                         })
-                    }
+                    } */}
                 </tbody>
             </table>
         </div>
