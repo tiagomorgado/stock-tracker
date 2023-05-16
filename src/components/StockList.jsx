@@ -5,6 +5,7 @@ export const StockList = () => {
     const [stock, setStock] = useState()
     const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"])
 
+
     useEffect(() => { 
         let isMounted = true
         const fetchData = async () => {
@@ -17,6 +18,7 @@ export const StockList = () => {
                     })
                 }))
 
+                /* Fetch only data and symbol */
                 const data = responses.map((response) => {
                     return{
                         data: response.data,
@@ -24,6 +26,7 @@ export const StockList = () => {
                     }   
                 })
                 console.log(data)
+                /* Check if component is mounted */
                 if(isMounted) {
                     setStock(data)
                 }
