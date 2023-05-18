@@ -4,17 +4,20 @@ import { StockDetailPage } from './pages/StockDetailPage';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
+import { WatchListContextProvider } from './context/watchListContext';
 
 
 export default function App() {
   return (
     <main className='container'>
-     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<StockOverviewPage/>}/>
-        <Route path='/detail/:symbol' element={<StockDetailPage/>}/>
-      </Routes>
-     </BrowserRouter>
+      <WatchListContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<StockOverviewPage/>}/>
+            <Route path='/detail/:symbol' element={<StockDetailPage/>}/>
+          </Routes>
+        </BrowserRouter>
+      </WatchListContextProvider>
     </main>
   );
 }
