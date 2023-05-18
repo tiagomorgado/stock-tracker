@@ -4,7 +4,22 @@ import finnHub from "../apis/finnHub"
 /* The component where the user will write which stock they want to follow */
 export const AutoComplete = () => {
     const [search, setSearch] = useState('')
-    const [result, setResults] = useState([])
+    const [results, setResults] = useState([])
+
+    const renderDropDown = () => {
+        const dropDownClass = search ? 'show' : null
+        return(
+            <ul style={{height:'500px', overflowY:'scroll', overflowX:'hidden', cursor:'pointer'}} className={`dropdown-menu ${dropDownClass}`}>
+                {
+                    results.map((result) => {
+                        return(
+                            <li key={result.symbol} className='dropdown-item'>{result.description}</li>
+                        )
+                    })
+                }
+            </ul>
+        )
+    }
 
     useEffect(() => {
         let isMounted = true
@@ -22,8 +37,6 @@ export const AutoComplete = () => {
                 if(isMounted) {
                     setResults(response.data.result)
                 }
-
-                
             } catch(err) {
                 console.log(err.response)
             }
@@ -44,11 +57,7 @@ export const AutoComplete = () => {
                 className='form-control' placeholder="Search" autoComplete="off"
                 value={search} onChange={(e) => setSearch(e.target.value)}/>
                     <label htmlFor='search'>Search</label>
-                    <ul className='dropdown-menu'>
-                        <li>Stock1</li>
-                        <li>Stock2</li>
-                        <li>Stock3</li>
-                    </ul>
+                    {renderDropDown()}
             </div>
         </div>
     )
