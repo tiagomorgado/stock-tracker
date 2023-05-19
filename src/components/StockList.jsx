@@ -73,9 +73,9 @@ export const StockList = () => {
                         <th scope='col'>Open</th>
                         <th scope='col'>Pclose</th>
                     </tr>
-
                 </thead>
-                <tbody>  
+                {stock && (
+                    <tbody>  
                    {
                        stock.map((stockData) => {
                             return(
@@ -93,6 +93,7 @@ export const StockList = () => {
                         })
                     }
                 </tbody>
+                )}
             </table>
         </div>
        
