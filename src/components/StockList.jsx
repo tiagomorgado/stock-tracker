@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import {BsFillCaretDownFill, BsFillCaretUpFill} from 'react-icons/bs'
 import finnHub from "../apis/finnHub"
 import { WatchListContext } from "../context/watchListContext"
@@ -7,6 +8,9 @@ import { WatchListContext } from "../context/watchListContext"
 export const StockList = () => {
     const [stock, setStock] = useState()
     const {watchList} = useContext(WatchListContext)
+
+    /* To go to another path or URL just use the navigate Obj */
+    const navigate = useNavigate()
     
 
     const changeColor = (change) =>{
@@ -51,6 +55,10 @@ export const StockList = () => {
         return () => {isMounted = false}
     }, [watchList])
 
+    const handleStockSelect = (symbol) => {
+        navigate(`detail/${symbol}`)
+    }
+
     return (
         <div>
             <table className='table hover mt-5'>
@@ -69,9 +77,9 @@ export const StockList = () => {
                 </thead>
                 <tbody>  
                    {
-                        stock.map((stockData) => {
+                       stock.map((stockData) => {
                             return(
-                                <tr key={stockData.symbol} className='table-row'>
+                                <tr style={{cursor:'pointer'}}onClick={() => handleStockSelect(stockData.symbol)} key={stockData.symbol} className='table-row'>
                                     <th scope='row'>{stockData.symbol}</th>
                                     <td>{stockData.data.c}</td>
                                     <td className={`text-${changeColor(stockData.data.d)}`}>{renderIcon(stockData.data.d)}{stockData.data.d}</td>
