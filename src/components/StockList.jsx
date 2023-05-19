@@ -67,7 +67,7 @@ export const StockList = () => {
                     </tr>
 
                 </thead>
-                <tbody>
+                <tbody>  
                    {
                         stock.map((stockData) => {
                             return(
