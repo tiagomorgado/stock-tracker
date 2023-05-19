@@ -7,7 +7,7 @@ import { WatchListContext } from "../context/watchListContext"
 
 export const StockList = () => {
     const [stock, setStock] = useState()
-    const {watchList} = useContext(WatchListContext)
+    const {watchList, deleteStock} = useContext(WatchListContext)
 
     /* To go to another path or URL just use the navigate Obj */
     const navigate = useNavigate()
@@ -87,7 +87,11 @@ export const StockList = () => {
                                     <td>{stockData.data.h}</td>
                                     <td>{stockData.data.l}</td>
                                     <td>{stockData.data.o}</td>
-                                    <td>{stockData.data.pc}</td>
+                                    <td>{stockData.data.pc}<button onClick={(e) => {
+                                        /* Stop event from bubbling up and triggering the handleStockSelect function */
+                                        e.stopPropagation()
+                                        deleteStock(stockData.symbol)
+                                    }} className='btn btn-danger btn-sm ml-3 d-inline-block delete-button'>Remove</button></td>
                                 </tr>
                             )
                         })
